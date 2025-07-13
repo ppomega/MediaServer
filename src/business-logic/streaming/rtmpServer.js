@@ -7,7 +7,7 @@ const config = {
   },
   streamName: "test",
   record: {
-    path: "../../",
+    path: "../../../",
   },
 };
 function ffmpeg(session) {
