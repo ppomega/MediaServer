@@ -22,6 +22,7 @@ app.get("/file/:author/:lecture/:name", async (req, res) => {
     );
   } else {
     const r = await getChunks(`${author}/${lecture}/dash/` + req.params.name);
+    console.log(r.status);
     r.data.pipe(res);
   }
 });
