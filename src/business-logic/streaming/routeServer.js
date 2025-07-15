@@ -10,15 +10,19 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("Bakchodi Nahi Rukegi ");
 });
-app.get("/file/:name", async (req, res) => {
-  const lecture = req.query.params["lecture"];
-  const author = req.query.params["author"];
+app.get("/file/:author/:lecture/:name", async (req, res) => {
+  console.log(req.params);
+  const lecture = req.params.lecture;
+  const author = req.params.author;
   console.log(req.params.name);
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-  if (fs.existsSync(`./${lecture}`)) {
-    res.sendFile(path.resolve(`./${lecture}/dash/` + req.params.name));
+  if (fs.existsSync(`./${author}/${lecture}`)) {
+    res.sendFile(
+      path.resolve(`./${author}/${lecture}/dash/` + req.params.name)
+    );
   } else {
-    res.pipe(await getChunks(`./${lecture}/dash/` + req.params.name));
+    const r = await getChunks(`${author}/${lecture}/dash/` + req.params.name);
+    r.data.pipe(res);
   }
 });
 

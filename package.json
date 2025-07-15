@@ -10,7 +10,7 @@
   "description": "",
   "dependencies": {
     "chokidar": "^4.0.3",
-    "cloudflare-r2-s3": "^1.0.2",
+    "cloudflare-r2-s3": "^1.0.3",
     "cors": "^2.8.5",
     "dotenv": "^17.1.0",
     "express": "^5.1.0",
