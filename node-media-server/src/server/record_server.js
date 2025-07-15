@@ -31,8 +31,9 @@ class NodeRecordServer {
       Context.eventEmitter.on("postPublish", (session) => {
         let filePath = path.join(
           this.config.record.path,
-          session.streamPath,
-          this.config.streamName + ".flv"
+          session.searchParams.get("name"),
+          session.streamName,
+          "test.flv"
         );
         let sess = new NodeRecordSession(session, filePath);
         sess.run();

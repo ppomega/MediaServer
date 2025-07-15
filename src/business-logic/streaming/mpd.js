@@ -2,7 +2,9 @@ const fs = require("fs");
 const path = require("path");
 const { XMLParser, XMLBuilder } = require("fast-xml-parser");
 
-const mpdPath = path.join(__dirname, "../../mystream/dash/manifest.mpd");
+const args = process.argv.slice(2);
+
+const mpdPath = path.join(`${args}`);
 
 const parser = new XMLParser({
   ignoreAttributes: false,

@@ -21,7 +21,7 @@ class NodeMediaServer {
     logger.info(`Homepage: ${Package.homepage}`);
     logger.info(`License: ${Package.license}`);
     logger.info(`Author: ${Package.author}`);
-    
+
     Context.config = config;
     this.httpServer = new NodeHttpServer(config);
     this.rtmpServer = new NodeRtmpServer(config);
@@ -30,21 +30,22 @@ class NodeMediaServer {
   }
 
   /**
-   * 
-   * @param {string} eventName 
-   * @param {(session:BaseSession)=>void} listener 
+   *
+   * @param {string} eventName
+   * @param {(session:BaseSession)=>void} listener
    */
   on(eventName, listener) {
     Context.eventEmitter.on(eventName, listener);
   }
 
+  emit(eventName, ...args) {
+    Context.eventEmitter.emit(eventName, ...args);
+  }
   run() {
-
     this.httpServer.run();
     this.rtmpServer.run();
-    this.recordServer.run(); 
+    this.recordServer.run();
     this.notifyServer.run();
-    
   }
 }
 
