@@ -2,9 +2,8 @@ const mongoose = require("mongoose");
 const batchSchema = new mongoose.Schema(
   {
     name: String,
-    date: Date,
-    status: Number,
-    lecturer: String,
+    duration: Number,
+    price: Number,
   },
   { collection: "batches" }
 );
