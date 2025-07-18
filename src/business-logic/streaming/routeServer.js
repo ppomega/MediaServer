@@ -4,11 +4,16 @@ const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
 const getChunks = require("../../business-logic/cloudflare/get_chunks.js");
+const getBatches = require("../database/bacth_info.js");
 app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Bakchodi Nahi Rukegi ");
+});
+
+app.get("/batches", async (req, res) => {
+  res.send(await getBatches());
 });
 app.get("/file/:author/:lecture/:name", async (req, res) => {
   console.log(req.params);
