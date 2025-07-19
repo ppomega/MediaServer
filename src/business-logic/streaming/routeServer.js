@@ -23,18 +23,21 @@ app.get("/lecture/:batch/:name", async (req, res) => {
 app.get("/batches", async (req, res) => {
   res.send(await getBatches());
 });
-app.get("/file/:author/:lecture/:name", async (req, res) => {
+app.get("/file/:author/:topic/:lecture/:name", async (req, res) => {
   console.log(req.params);
   const lecture = req.params.lecture;
   const author = req.params.author;
+  const topic = req.params.topic;
   console.log(req.params.name);
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
   if (fs.existsSync(`./${author}/${lecture}`)) {
     res.sendFile(
-      path.resolve(`./${author}/${lecture}/dash/` + req.params.name)
+      path.resolve(`./${author}/${topic}/${lecture}/dash/` + req.params.name)
     );
   } else {
-    const r = await getChunks(`${author}/${lecture}/dash/` + req.params.name);
+    const r = await getChunks(
+      `${author}/${topic}/${lecture}/dash/` + req.params.name
+    );
     console.log(r.status);
     r.data.pipe(res);
   }

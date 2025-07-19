@@ -32,6 +32,7 @@ class NodeRecordServer {
         let filePath = path.join(
           this.config.record.path,
           session.searchParams.get("name"),
+          session.searchParams.get("topic"),
           session.streamName,
           "test.flv"
         );
