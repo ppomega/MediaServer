@@ -10,6 +10,7 @@ async function createLecture(lecture) {
     date: lecture.date,
     status: lecture.status,
     lecturer: lecture.author,
+    lecture: lecture.lecture,
   });
   const result = await doc.save();
   console.log(result);
