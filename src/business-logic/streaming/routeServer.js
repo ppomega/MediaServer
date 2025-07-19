@@ -30,7 +30,7 @@ app.get("/file/:author/:topic/:lecture/:name", async (req, res) => {
   const topic = req.params.topic;
   console.log(req.params.name);
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-  if (fs.existsSync(`./${author}/${lecture}`)) {
+  if (fs.existsSync(`./${author}/${topic}/${lecture}`)) {
     res.sendFile(
       path.resolve(`./${author}/${topic}/${lecture}/dash/` + req.params.name)
     );
