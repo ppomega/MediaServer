@@ -18,6 +18,8 @@ app.get("/", (req, res) => {
 app.get("/login", async (req, res) => {
   const Username = req.headers.Username;
   const Password = req.headers.Password;
+  console.log(Username);
+  console.log(Password);
   const result = await studentLogin(Username, Password);
   res.send(result);
 });
