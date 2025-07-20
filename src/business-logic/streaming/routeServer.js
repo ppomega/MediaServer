@@ -16,17 +16,15 @@ app.get("/", (req, res) => {
   res.send("Bakchodi Nahi Rukegi ");
 });
 app.get("/login", async (req, res) => {
-  const Username = req.headers.Username;
-  const Password = req.headers.Password;
-  console.log(Username);
-  console.log(Password);
+  const Username = req.headers.username;
+  const Password = req.headers.password;
   const result = await studentLogin(Username, Password);
   res.send(result);
 });
 app.get("/signIn", async (req, res) => {
-  const Username = req.headers.Username;
-  const Password = req.headers.Password;
-  const Email = req.headers.Email;
+  const Username = req.headers.username;
+  const Password = req.headers.password;
+  const Email = req.headers.email;
   const result = await studentSignIn(Username, Password, Email);
   res.send(result);
 });

@@ -3,7 +3,7 @@ const student = require("./student_model/student.js");
 
 async function studentSignIn(Username, Password, email) {
   await mongoose.connect(process.env.MONGODB_CONNECTION_STRING);
-  const result = student.find({ Email: email });
+  const result = await student.find({ Email: email });
   if (result.length != 0) {
     return null;
   } else {
