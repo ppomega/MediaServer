@@ -7,7 +7,7 @@ const getChunks = require("../../business-logic/cloudflare/get_chunks.js");
 const getBatches = require("../database/batch_info.js");
 const getTopics = require("../database/topic_info.js");
 const studentLogin = require("../database/student_login.js");
-const studentSignIn = require("../database/student_SignIn.js");
+const studentSignIn = require("../database/student_signIn.js");
 const getLectureByNameAndBatch = require("../database/lect_info_name.js");
 app.use(cors());
 app.use(express.json());
