@@ -6,12 +6,27 @@ const fs = require("fs");
 const getChunks = require("../../business-logic/cloudflare/get_chunks.js");
 const getBatches = require("../database/batch_info.js");
 const getTopics = require("../database/topic_info.js");
+const studentLogin = require("../database/student_login.js");
+const studentSignIn = require("../database/student_SignIn.js");
 const getLectureByNameAndBatch = require("../database/lect_info_name.js");
 app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Bakchodi Nahi Rukegi ");
+});
+app.get("/login", async (req, res) => {
+  const Username = req.headers.Username;
+  const Password = req.headers.Password;
+  const result = await studentLogin(Username, Password);
+  res.send(result);
+});
+app.get("/signIn", async (req, res) => {
+  const Username = req.headers.Username;
+  const Password = req.headers.Password;
+  const Email = req.headers.Email;
+  const result = await studentSignIn(Username, Password, Email);
+  res.send(result);
 });
 app.get("/topics/:batch", async (req, res) => {
   res.send(await getTopics(req.params.batch));
@@ -28,9 +43,10 @@ app.get("/file/:author/:topic/:lecture/:name", async (req, res) => {
   const lecture = req.params.lecture;
   const author = req.params.author;
   const topic = req.params.topic;
-  console.log(req.params.name);
+  console.log(req.params);
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
   if (fs.existsSync(`./${author}/${topic}/${lecture}`)) {
+    console.log("Koi Mil gaya");
     res.sendFile(
       path.resolve(`./${author}/${topic}/${lecture}/dash/` + req.params.name)
     );

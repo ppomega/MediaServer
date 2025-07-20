@@ -2,9 +2,9 @@ const fs = require("fs");
 const path = require("path");
 const { XMLParser, XMLBuilder } = require("fast-xml-parser");
 
-const args = process.argv.slice(2);
+const args = process.argv[2];
 
-const mpdPath = path.join(`${args}`);
+const mpdPath = path.join(args);
 
 const parser = new XMLParser({
   ignoreAttributes: false,

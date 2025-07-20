@@ -53,10 +53,10 @@ function ffmpeg(session) {
     }
   );
   exec(
-    `node ./src/business-logic/streaming/mpd.js ${path.resolve(
+    `node ./src/business-logic/streaming/mpd.js "${path.resolve(
       `${session.searchParams.get("name")}/${session.searchParams.get(
         "topic"
-      )}/${streamName}/dash/manifest.mpd`
+      )}/${streamName}/dash/manifest.mpd"`
     )}`,
     (err, stdout, stderr) => {
       if (err) console.error(err);
