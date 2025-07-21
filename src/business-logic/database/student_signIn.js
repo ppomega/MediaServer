@@ -5,7 +5,7 @@ async function studentSignIn(Username, Password, email) {
   await mongoose.connect(process.env.MONGODB_CONNECTION_STRING);
   const result = await student.find({ Email: email });
   if (result.length != 0) {
-    return null;
+    return result;
   } else {
     await student.insertOne({
       Username: Username,
